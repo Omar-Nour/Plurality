@@ -14,7 +14,7 @@ typedef struct
 candidate;
 
 // Array of candidates
-candidate quals[MAX];
+candidate candidates[MAX];
 
 // Number of candidates
 int candidate_count;
@@ -41,8 +41,8 @@ int main(int argc, string argv[])
     }
     for (int i = 0; i < candidate_count; i++)
     {
-        quals[i].name = argv[i + 1];
-        quals[i].votes = 0;
+        candidates[i].name = argv[i + 1];
+        candidates[i].votes = 0;
     }
 
     int voter_count = get_int("Number of voters: ");
@@ -69,9 +69,9 @@ bool vote(string name)
     bool temp;
     for(int i = 0 ; i < candidate_count ; i++)
     {
-        if (name == quals[i].name) // Never executes although they may be the same
+        if (name == candidates[i].name) // Never executes although they may be the same
         {
-            quals[i].votes++;
+            candidates[i].votes++;
             temp = true;
         }
         else
@@ -88,18 +88,18 @@ void print_winner(void)
     int max = 0;
     for(int i = 0 ; i < candidate_count ; i++)
     {
-        if (quals[i].votes > max)
+        if (candidates[i].votes > max)
         {
-            max = quals[i].votes;
+            max = candidates[i].votes;
         }
     }
     for(int i = 0 ; i < candidate_count ; i++)
     {
-        if (quals[i].votes == max)
+        if (candidates[i].votes == max)
         {
-            printf("%s",quals[i].name);
+            printf("%s",candidates[i].name);
         }
-        printf("%i\n",quals[i].votes);
+        printf("%i\n",candidates[i].votes);
     }
 }
 
