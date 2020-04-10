@@ -12,7 +12,3 @@ for i in range(H):
     for st in range(strs):
         print("#", end="")
     print()
-    
-    
-    
-    
