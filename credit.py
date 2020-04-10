@@ -9,15 +9,15 @@ else:
     typ = "INVALID\n"
 sum=0
 if typ != "INVALID\n":
-    for i in range(0,len(CC),2):
+    for i in range(len(CC)-2,-1,-2):
         tnum = int(CC[i])*2
-        if tnum < 9:
+        if tnum < 10:
             sum+= tnum
-        else:
+        else:    
             stnum = str(tnum)
             sum+= int(stnum[0])
             sum+= int(stnum[1])
-    for i in range(1,len(CC),2):
+    for i in range(len(CC)-1,-1,-2):
         sum+= int(CC[i])
     if sum % 10 == 0:
         print(typ)
