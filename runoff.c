@@ -128,11 +128,11 @@ int main(int argc, string argv[])
 // Record preference if vote is valid
 bool vote(int voter, int rank, string name)
 {
-    for (int i = 0; i < candidates_count; ++i)
+    for (int i = 0; i < candidate_count; ++i)
     {
         if (strcmp(name,candidates[i].name) == 0)
         {
-            preferences[voter][rank] = name;
+            preferences[voter][rank] = i;
             return true;
         }
     }    
@@ -146,22 +146,22 @@ void tabulate(void)
     for (int i = 0; i < voter_count; ++i)
     {
         // Raise a vote for the first ranked candidate of the i'th voter (if not eliminated ofc..)
-        for(int j = 0; j < candidate_count: ++j)
+        for(int j = 0; j < candidate_count; ++j)
         {
-            if (strcmp(candidates[j].name , preferences[i][0]) == 0 & !candidates[j].eliminated)
+            if ((strcmp(candidates[j].name , candidates[preferences[i][0]].name) == 0) & (!candidates[j].eliminated))
             {
-                candidates[j].votes++
+                candidates[j].votes++;
                 break;
             }
             else
             {
-                if (strcmp(candidates[j].name , preferences[i][0]) == 0 & candidates[j].eliminated)
+                if ((strcmp(candidates[j].name , candidates[preferences[i][0]].name) == 0) & (candidates[j].eliminated))
                 {
                     for (int k = 0; k < candidate_count; ++k)
                     {
-                        if (strcmp(candidates[j].name , preferences[i][1]) == 0 & !candidates[j].eliminated)
+                        if ((strcmp(candidates[j].name , candidates[preferences[i][1]].name) == 0) & (!candidates[j].eliminated))
                         {
-                            candidates[j].votes++
+                            candidates[j].votes++;
                         }
                     }
                 }
@@ -179,9 +179,9 @@ bool print_winner(void)
     // fetch max voted
     for (int i = 0; i < candidate_count; ++i)
     {
-        if (candidates[i].vote > maxvote)
+        if (candidates[i].votes > maxvote)
         {
-            maxvote = candidates[i].vote;
+            maxvote = candidates[i].votes;
             maxindex = i;
         }
     }
@@ -197,13 +197,13 @@ bool print_winner(void)
 // Return the minimum number of votes any remaining candidate has
 int find_min(void)
 {
-    int minvote = 101
+    int minvote = 101;
     // fetch least voted among remaining contestors
     for (int i = 0; i < candidate_count; ++i)
     {
-        if (!candidates[i].eliminated & candidates[i].vote < minvote)
+        if ((!candidates[i].eliminated) & (candidates[i].votes < minvote))
         {
-            minvote = candidates[i].vote;
+            minvote = candidates[i].votes;
         }
     }
     return minvote;
@@ -218,10 +218,10 @@ bool is_tie(int min)
     int counterT = 0;
     for (int i = 0; i < candidate_count; ++i)
     {
-        if (!candiates[i].eliminated)
+        if (!candidates[i].eliminated)
         {
             counterA++;
-            if (candidates[i].vote == min)
+            if (candidates[i].votes == min)
             {
                 counterT++;
             }
@@ -239,7 +239,7 @@ void eliminate(int min)
 {
     for (int i = 0; i < candidate_count; ++i)
     {
-        if (!candidates[i].eliminated & candidates[i].vote == min)
+        if ((!candidates[i].eliminated) & (candidates[i].votes == min))
         {
             candidates[i].eliminated = true;
         }
