@@ -186,7 +186,7 @@ bool print_winner(void)
         }
     }
     // print if there is a winner
-    if (maxvote >= voter_count/2)
+    if (maxvote > voter_count/2)
     {
         printf("%s\n",candidates[maxindex].name);
         return true;
