@@ -130,7 +130,7 @@ bool vote(int voter, int rank, string name)
 {
     for (int i = 0; i < candidate_count; ++i)
     {
-        if (strcmp(name,candidates[i].name) == 0)
+        if (strcmp(name, candidates[i].name) == 0)
         {
             preferences[voter][rank] = i;
             return true;
@@ -146,20 +146,20 @@ void tabulate(void)
     for (int i = 0; i < voter_count; ++i)
     {
         // Raise a vote for the first ranked candidate of the i'th voter (if not eliminated ofc..)
-        for(int j = 0; j < candidate_count; ++j)
+        for (int j = 0; j < candidate_count; ++j)
         {
-            if ((strcmp(candidates[j].name , candidates[preferences[i][0]].name) == 0) & (!candidates[j].eliminated))
+            if ((strcmp(candidates[j].name, candidates[preferences[i][0]].name) == 0) & (!candidates[j].eliminated))
             {
                 candidates[j].votes++;
                 break;
             }
             else
             {
-                if ((strcmp(candidates[j].name , candidates[preferences[i][0]].name) == 0) & (candidates[j].eliminated))
+                if ((strcmp(candidates[j].name, candidates[preferences[i][0]].name) == 0) & (candidates[j].eliminated))
                 {
                     for (int k = 0; k < candidate_count; ++k)
                     {
-                        if ((strcmp(candidates[j].name , candidates[preferences[i][1]].name) == 0) & (!candidates[j].eliminated))
+                        if ((strcmp(candidates[j].name, candidates[preferences[i][1]].name) == 0) & (!candidates[j].eliminated))
                         {
                             candidates[j].votes++;
                         }
@@ -186,9 +186,9 @@ bool print_winner(void)
         }
     }
     // print if there is a winner
-    if (maxvote > voter_count/2)
+    if (maxvote > voter_count / 2)
     {
-        printf("%s\n",candidates[maxindex].name);
+        printf("%s\n", candidates[maxindex].name);
         return true;
     }
     return false;
