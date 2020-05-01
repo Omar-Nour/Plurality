@@ -158,7 +158,7 @@ void tabulate(void)
                 }
                 else
                 {
-                    for (int k = 0; k < candidate_count; ++k)
+                    for (int k = 1; k < candidate_count -1; ++k)
                     {
                         for (int x = 0; x < candidate_count; ++x)
                         {
