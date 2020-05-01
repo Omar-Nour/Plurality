@@ -143,30 +143,41 @@ bool vote(int voter, int rank, string name)
 void tabulate(void)
 {
     //Raise votes according to each voter
+    bool stop = false;
     for (int i = 0; i < voter_count; ++i)
     {
         // Raise a vote for the first ranked candidate of the i'th voter (if not eliminated ofc..)
         for (int j = 0; j < candidate_count; ++j)
         {
-            if ((strcmp(candidates[j].name, candidates[preferences[i][0]].name) == 0) & (!candidates[j].eliminated))
+            if (strcmp(candidates[j].name, candidates[preferences[i][0]].name) == 0) 
             {
-                candidates[j].votes++;
-                break;
-            }
-            else
-            {
-                if ((strcmp(candidates[j].name, candidates[preferences[i][0]].name) == 0) & (candidates[j].eliminated))
+                if (!candidates[j].eliminated)
+                {
+                    candidates[j].votes++;
+                    break;
+                }
+                else
                 {
                     for (int k = 0; k < candidate_count; ++k)
                     {
-                        if ((strcmp(candidates[j].name, candidates[preferences[i][1]].name) == 0) & (!candidates[j].eliminated))
+                        for (int x = 0; x < candidate_count; ++x)
                         {
-                            candidates[j].votes++;
+                            if ((strcmp(candidates[x].name, candidates[preferences[i][k+1]].name) == 0) & (!candidates[j].eliminated))
+                            {
+                                candidates[x].votes++;
+                                stop = true;
+                                break;
+                            }
+                        }
+                        if (stop)
+                        {
+                            break;
                         }
                     }
                 }
-            }
-        }
+                
+            } 
+        }    
     }
     return;
 }
