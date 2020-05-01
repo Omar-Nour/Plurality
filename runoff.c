@@ -158,11 +158,11 @@ void tabulate(void)
                 }
                 else
                 {
-                    for (int k = 0; k < candidate_count -1; ++k)
+                    for (int k = 0; k < candidate_count - 1; ++k)
                     {
                         for (int x = 0; x < candidate_count; ++x)
                         {
-                            if ((strcmp(candidates[x].name, candidates[preferences[i][k+1]].name) == 0) & (!candidates[x].eliminated))
+                            if ((strcmp(candidates[x].name, candidates[preferences[i][k + 1]].name) == 0) & (!candidates[x].eliminated))
                             {
                                 candidates[x].votes++;
                                 stop = true;
