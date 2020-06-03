@@ -21,23 +21,22 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 // Convert image to sepia
 void sepia(int height, int width, RGBTRIPLE image[height][width])
 {
-    float sRED;
-    float sGREEN;
-    float sBLUE;
-    
-    for (int row = 0; row < height; ++row)
+    int sepiaBlue;
+    int sepiaRed;
+    int sepiaGreen;
+    for (int i = 0; i < width; i++)
     {
-        for (int col = 0; col < width; ++col)
+        for (int j = 0; j < height; j++)
         {
-            sBLUE = ensure(round(0.272 * image[row][col].rgbtRed + 0.534 * image[row][col].rgbtGreen + 0.131 * image[row][col].rgbtBlue));
-            sGREEN = ensure(round(0.349 * image[row][col].rgbtRed + 0.686 * image[row][col].rgbtGreen + 0.168 * image[row][col].rgbtBlue));
-            sRED = ensure(round(0.393 * image[row][col].rgbtRed + 0.769 * image[row][col].rgbtGreen + 0.189 * image[row][col].rgbtBlue));
-            image[row][col].rgbtBlue = sBLUE;
-            image[row][col].rgbtGreen = sGREEN;
-            image[row][col].rgbtRed = sRED;
+            sepiaBlue = ensure(round(0.272 * image[j][i].rgbtRed + 0.534 * image[j][i].rgbtGreen + 0.131 * image[j][i].rgbtBlue));
+            sepiaGreen = ensure(round(0.349 * image[j][i].rgbtRed + 0.686 * image[j][i].rgbtGreen + 0.168 * image[j][i].rgbtBlue));
+            sepiaRed = ensure(round(0.393 * image[j][i].rgbtRed + 0.769 * image[j][i].rgbtGreen + 0.189 * image[j][i].rgbtBlue));
+
+            image[j][i].rgbtBlue = sepiaBlue;
+            image[j][i].rgbtGreen = sepiaGreen;
+            image[j][i].rgbtRed = sepiaRed;
         }
     }
-    return;
 }
 
 // Reflect image horizontally
@@ -160,7 +159,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 }
 
 // round to 255 in sepia if value > 255
-int ensure(float color)
+int ensure(int color)
 {
     if (color > 255.0)
     {
