@@ -86,7 +86,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
             }
             //case 2
-            if (row == 0 && col != width - 1 && col != 0)
+            else if (row == 0 && col != width - 1 && col != 0)
             {
                 temp[row][col].rgbtBlue = ensure(round((image[row][col - 1].rgbtBlue + image[row][col].rgbtBlue + image[row][col + 1].rgbtBlue + image[row + 1][col - 1].rgbtBlue + image[row + 1][col].rgbtBlue + image[row + 1][col + 1].rgbtBlue) / 6.0));
                 temp[row][col].rgbtGreen = ensure(round((image[row][col - 1].rgbtGreen + image[row][col].rgbtGreen + image[row][col + 1].rgbtGreen + image[row + 1][col - 1].rgbtGreen + image[row + 1][col].rgbtGreen + image[row + 1][col + 1].rgbtGreen) / 6.0));
@@ -94,49 +94,49 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
             }
             //case 3
-            if (row == 0 && col == width - 1)
+            else if (row == 0 && col == width - 1)
             {
                 temp[row][col].rgbtBlue = ensure(round((image[row][col - 1].rgbtBlue + image[row][col].rgbtBlue + image[row + 1][col - 1].rgbtBlue + image[row + 1][col].rgbtBlue) / 4.0));
                 temp[row][col].rgbtGreen = ensure(round((image[row][col - 1].rgbtGreen + image[row][col].rgbtGreen + image[row + 1][col - 1].rgbtGreen + image[row + 1][col].rgbtGreen) / 4.0));
                 temp[row][col].rgbtRed = ensure(round((image[row][col - 1].rgbtRed + image[row][col].rgbtRed + image[row + 1][col - 1].rgbtRed + image[row + 1][col].rgbtRed) / 4.0));
             }
             //case 4
-            if (col == 0 && row != 0 && row != height - 1)
+            else if (col == 0 && row != 0 && row != height - 1)
             {
                 temp[row][col].rgbtBlue = ensure(round((image[row][col].rgbtBlue + image[row][col + 1].rgbtBlue + image[row + 1][col].rgbtBlue + image[row + 1][col + 1].rgbtBlue + image[row - 1][col].rgbtBlue + image[row - 1][col + 1].rgbtBlue) / 6.0));
                 temp[row][col].rgbtGreen = ensure(round((image[row][col].rgbtGreen + image[row][col + 1].rgbtGreen + image[row + 1][col].rgbtGreen + image[row + 1][col + 1].rgbtGreen + image[row - 1][col].rgbtGreen + image[row - 1][col + 1].rgbtGreen) / 6.0));
                 temp[row][col].rgbtRed = ensure(round((image[row][col].rgbtRed + image[row][col + 1].rgbtRed + image[row + 1][col].rgbtRed + image[row + 1][col + 1].rgbtRed + image[row - 1][col].rgbtRed + image[row - 1][col + 1].rgbtRed) / 6.0));
             }
             //case 5
-            if (col == width - 1  && row != 0 && row != height - 1)
+            else if (col == width - 1  && row != 0 && row != height - 1)
             {
                 temp[row][col].rgbtBlue = ensure(round((image[row][col].rgbtBlue + image[row][col - 1].rgbtBlue + image[row + 1][col].rgbtBlue + image[row + 1][col - 1].rgbtBlue + image[row - 1][col].rgbtBlue + image[row - 1][col - 1].rgbtBlue) / 6.0));
                 temp[row][col].rgbtGreen = ensure(round((image[row][col].rgbtGreen + image[row][col - 1].rgbtGreen + image[row + 1][col].rgbtGreen + image[row + 1][col - 1].rgbtGreen + image[row - 1][col].rgbtGreen + image[row - 1][col - 1].rgbtGreen) / 6.0));
                 temp[row][col].rgbtRed = ensure(round((image[row][col].rgbtRed + image[row][col - 1].rgbtRed + image[row + 1][col].rgbtRed + image[row + 1][col - 1].rgbtRed + image[row - 1][col].rgbtRed + image[row - 1][col - 1].rgbtRed) / 6.0));
             }
             //case 6
-            if (row == height - 1  && col == 0)
+            else if (row == height - 1  && col == 0)
             {
                 temp[row][col].rgbtBlue = ensure(round((image[row][col].rgbtBlue + image[row][col + 1].rgbtBlue + image[row - 1][col].rgbtBlue + image[row - 1][col + 1].rgbtBlue) / 4.0));
                 temp[row][col].rgbtGreen = ensure(round((image[row][col].rgbtGreen + image[row][col + 1].rgbtGreen + image[row - 1][col].rgbtGreen + image[row - 1][col + 1].rgbtGreen) / 4.0));
                 temp[row][col].rgbtRed = ensure(round((image[row][col].rgbtRed + image[row][col + 1].rgbtRed + image[row - 1][col].rgbtRed + image[row - 1][col + 1].rgbtRed) / 4.0));
             }
             //case 7
-            if (row == height - 1 && col != 0 && col != width - 1)
+            else if (row == height - 1 && col != 0 && col != width - 1)
             {
                 temp[row][col].rgbtBlue = ensure(round((image[row][col].rgbtBlue + image[row][col + 1].rgbtBlue + image[row][col - 1].rgbtBlue + image[row - 1][col + 1].rgbtBlue + image[row - 1][col].rgbtBlue + image[row - 1][col - 1].rgbtBlue) / 6.0));
                 temp[row][col].rgbtGreen = ensure(round((image[row][col].rgbtGreen + image[row][col + 1].rgbtGreen + image[row][col - 1].rgbtGreen + image[row - 1][col + 1].rgbtGreen + image[row - 1][col].rgbtGreen + image[row - 1][col - 1].rgbtGreen) / 6.0));
                 temp[row][col].rgbtRed = ensure(round((image[row][col].rgbtRed + image[row][col + 1].rgbtRed + image[row][col - 1].rgbtRed + image[row - 1][col + 1].rgbtRed + image[row - 1][col].rgbtRed + image[row - 1][col - 1].rgbtRed) / 6.0));
             }
             //case 8
-            if (row == height - 1 && col == width - 1)
+            else if (row == height - 1 && col == width - 1)
             {
                 temp[row][col].rgbtBlue = ensure(round((image[row][col].rgbtBlue + image[row][col - 1].rgbtBlue + image[row - 1][col].rgbtBlue + image[row - 1][col - 1].rgbtBlue) / 4.0));
                 temp[row][col].rgbtGreen = ensure(round((image[row][col].rgbtGreen + image[row][col - 1].rgbtGreen + image[row - 1][col].rgbtGreen + image[row - 1][col - 1].rgbtGreen) / 4.0));
                 temp[row][col].rgbtRed = ensure(round((image[row][col].rgbtRed + image[row][col - 1].rgbtRed + image[row - 1][col].rgbtRed + image[row - 1][col - 1].rgbtRed) / 4.0));
             }
             //case 9
-            if (row != 0 && col != 0 && row != height - 1 && col != width - 1)
+            else 
             {
                 temp[row][col].rgbtBlue = ensure(round((image[row - 1][col - 1].rgbtBlue + image[row - 1][col].rgbtBlue + image[row - 1][col + 1].rgbtBlue + image[row][col - 1].rgbtBlue + image[row][col].rgbtBlue + image[row][col + 1].rgbtBlue + image[row + 1][col - 1].rgbtBlue + image[row + 1][col].rgbtBlue + image[row + 1][col + 1].rgbtBlue) / 9.0));
                 temp[row][col].rgbtGreen = ensure(round((image[row - 1][col - 1].rgbtGreen + image[row - 1][col].rgbtGreen + image[row - 1][col + 1].rgbtGreen + image[row][col - 1].rgbtGreen + image[row][col].rgbtGreen + image[row][col + 1].rgbtGreen + image[row + 1][col - 1].rgbtGreen + image[row + 1][col].rgbtGreen + image[row + 1][col + 1].rgbtGreen) / 9.0));
