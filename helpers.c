@@ -18,6 +18,16 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     return;
 }
 
+// round to 255 in sepia if value > 255
+int ensure(int color)
+{
+    if (color > 255.0)
+    {
+        return 255;
+    }
+    return color;
+}
+
 // Convert image to sepia
 void sepia(int height, int width, RGBTRIPLE image[height][width])
 {
@@ -158,12 +168,3 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     return;
 }
 
-// round to 255 in sepia if value > 255
-int ensure(int RGB)
-{
-    if (RGB > 255)
-    {
-        RGB = 255;
-    }
-    return RGB;
-}
