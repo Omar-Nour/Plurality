@@ -160,9 +160,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 }
 
 // round to 255 in sepia if value > 255
-int ensure(int color)
+int ensure(float color)
 {
-    if (color > 255)
+    if (color > 255.0)
     {
         return 255;
     }
