@@ -81,7 +81,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             if (col == 0 && row == 0)
             {
                 temp[row][col].rgbtBlue = ensure(round((image[row][col].rgbtBlue + image[row][col + 1].rgbtBlue + image[row + 1][col].rgbtBlue + image[row + 1][col + 1].rgbtBlue) / 4.0));
-                temp[row][col].rgbtGreen = ensure(round((image[row][col].rgbtGreen + image[row][col + 1].rgbtGreen + image[row + 1][col].rgbtGreen + image[row + 1][col + 1].rgbtGreen) / 4).0);
+                temp[row][col].rgbtGreen = ensure(round((image[row][col].rgbtGreen + image[row][col + 1].rgbtGreen + image[row + 1][col].rgbtGreen + image[row + 1][col + 1].rgbtGreen) / 4.0));
                 temp[row][col].rgbtRed = ensure(round((image[row][col].rgbtRed + image[row][col + 1].rgbtRed + image[row + 1][col].rgbtRed + image[row + 1][col + 1].rgbtRed) / 4.0));
 
             }
