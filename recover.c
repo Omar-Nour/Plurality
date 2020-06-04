@@ -4,10 +4,11 @@
 
 int main(int argc, char *argv[])
 {
-    typedef uint8_t  BYTE;
-    char *filename = "###.jpg";
+    typedef uint8_t BYTE;
+    char *filename = malloc(8 * sizeof(char));
     
-    FILE *memc = fopen(argv[1],"r");
+    // open memory card
+    FILE *memc = fopen(argv[1], "r");
     FILE *img;
     BYTE bytes[512];
     int jpg_count = -1;
@@ -24,25 +25,26 @@ int main(int argc, char *argv[])
             if (jpg_count == 0)
             {
                 sprintf(filename, "%03i.jpg", jpg_count);
-                img = fopen(filename,"w");
+                img = fopen(filename, "w");
                 null = fwrite(&bytes, 1, 512, img);
             }
             else
             {
                 fclose(img);
                 sprintf(filename, "%03i.jpg", jpg_count);
-                img = fopen(filename,"w");
+                img = fopen(filename, "w");
                 null = fwrite(&bytes, 1, 512, img);
             }
-        }    
+        }  
+        // continue to fill next blocks of previous/opened image
         else if (jpg_count > -1)
         {
             null = fwrite(&bytes, 1, 512, img);
         }
         
-    } while (read_bytes != 0);
+    }
+    while (read_bytes != 0);
     
     fclose(img);
     fclose(memc);
-    
 }
