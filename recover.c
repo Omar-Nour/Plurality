@@ -17,8 +17,12 @@ int main(int argc, char *argv[])
     FILE *memc = fopen(argv[1], "r");
     FILE *img;
     BYTE bytes[512];
+    
+    // images found counter
     int jpg_count = -1;
     int read_bytes;
+    
+    // to recieve return of fwrite
     int null;
     
     
@@ -51,9 +55,11 @@ int main(int argc, char *argv[])
     }
     while (read_bytes != 0);
     
+    // close img only if it was open asasan
     if (jpg_count > -1)
     {
         fclose(img);
     }
     fclose(memc);
+    
 }
