@@ -8,6 +8,11 @@ int main(int argc, char *argv[])
     char *filename = malloc(8 * sizeof(char));
     
     // open memory card
+    if (arc != 2)
+    {
+        return argc;
+    }
+    
     FILE *memc = fopen(argv[1], "r");
     FILE *img;
     BYTE bytes[512];
