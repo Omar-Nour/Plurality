@@ -45,6 +45,9 @@ int main(int argc, char *argv[])
     }
     while (read_bytes != 0);
     
-    fclose(img);
+    if (jpg_count > -1)
+    {
+        fclose(img);
+    }
     fclose(memc);
 }
