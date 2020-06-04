@@ -7,12 +7,13 @@ int main(int argc, char *argv[])
     typedef uint8_t BYTE;
     char *filename = malloc(8 * sizeof(char));
     
-    // open memory card
+    // exit if no file
     if (argc != 2)
     {
         return argc;
     }
     
+    // open memory card
     FILE *memc = fopen(argv[1], "r");
     FILE *img;
     BYTE bytes[512];
