@@ -6,6 +6,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <strings.h>
+#include <ctype.h>
 
 int word_counter = 0;
 
@@ -17,8 +18,8 @@ typedef struct node
 }
 node;
 
-// Number of buckets in hash table
-const unsigned int N = 1600;
+// Number of buckets in hash table CHANGE HEEEEREREE
+const unsigned int N = 26;
 
 // Hash table
 node *table[N];
@@ -64,21 +65,34 @@ bool check(const char *word)
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
+    // CHANGE HEREERERE TOOOO
+    unsigned int address = (int)word[0];
+    if (isupper(address) == 0)
+    {
+        address = address - 97;    
+    }
+    else
+    {
+        address = address - 65;
+    }
+    return address;
+    
+    
     //djb2 by Dan Bernstein
     
-    unsigned int hash = 5381;
-    int c = 0;
+    //unsigned int hash = 5381;
+    //int c = 0;
 
-    while (c == *word++)
-    {
-        hash = ((hash << 5) + hash) + c; 
-    }
+    //while (c == *word++)
+    //{
+    //    hash = ((hash << 5) + hash) + c; 
+    //}
     
-    if (hash > 1599)
-    {
-        hash = hash % 1599;
-    }
-    return hash;
+    //if (hash > 1599)
+    //{
+    //    hash = hash % 1599;
+    //}
+    //return hash;
     
 }
 
