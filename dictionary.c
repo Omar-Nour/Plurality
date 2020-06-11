@@ -18,13 +18,19 @@ typedef struct node
 node;
 
 // Number of buckets in hash table
-const unsigned int N = 1256;
+const unsigned int N = 1600;
 
 // Hash table
 node *table[N];
 
-// UNCOMMENT HERE IF SEGMENTATION FAULT!!!
-
+// initialize to nulls
+void init(void)
+{
+    for(int i = 0; i < N; ++i)
+    {
+        table[i] = NULL;
+    }
+}
 
 // Returns true if word is in dictionary else false
 bool check(const char *word)
@@ -59,13 +65,18 @@ bool check(const char *word)
 unsigned int hash(const char *word)
 {
     int address = 0;
-
+    
     for(int i = 0; word[i] != '\0'; ++i)
     {
         address += word[i];
     }
+    
+    if (address > 1599)
+    {
+        address = address % 1599;
+    }
 
-    return (address % 1256);
+    return address;
 }
 
 // Loads dictionary into memory, returning true if successful else false
@@ -77,13 +88,9 @@ bool load(const char *dictionary)
     {
         return false;
     }
-
-    // USELES??!!
-    for(int i = 0; i < N; ++i)
-    {
-        table[i] = NULL;
-    }
-
+    
+    init();
+    
     int scanner, address;
     bool brk = false;
 
@@ -91,7 +98,7 @@ bool load(const char *dictionary)
 
     do
     {
-        scanner = fscanf(d, "%s\n", wrd);
+        scanner = fscanf(d, "%s", wrd);
         if (scanner != EOF)
         {
             word_counter++;
@@ -150,6 +157,7 @@ bool unload(void)
         while (n != NULL)
         {
            tmp = n->next;
+           free(n);
            n = tmp;
         }
 
