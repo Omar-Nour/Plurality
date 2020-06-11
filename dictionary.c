@@ -69,7 +69,7 @@ unsigned int hash(const char *word)
 
     while (c == *word++)
     {
-        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+        hash = ((hash << 5) + hash) + c; 
     }
     
     if (hash > 1599)
