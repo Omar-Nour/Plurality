@@ -64,6 +64,8 @@ bool check(const char *word)
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
+    //djb2 by Dan Bernstein
+    
     unsigned int hash = 5381;
     int c = 0;
 
@@ -78,19 +80,6 @@ unsigned int hash(const char *word)
     }
     return hash;
     
-    //int address = 0;
-    
-    //for(int i = 0; word[i] != '\0'; ++i)
-    //{
-    //    address += word[i];
-    //}
-    
-    //if (address > 1599)
-    //{
-    //    address = address % 1599;
-    //}
-
-    //return address;
 }
 
 // Loads dictionary into memory, returning true if successful else false
