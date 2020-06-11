@@ -64,19 +64,33 @@ bool check(const char *word)
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
-    int address = 0;
-    
-    for(int i = 0; word[i] != '\0'; ++i)
-    {
-        address += word[i];
-    }
-    
-    if (address > 1599)
-    {
-        address = address % 1599;
-    }
+    unsigned int hash = 5381;
+    int c = 0;
 
-    return address;
+    while (c == *word++)
+    {
+        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+    }
+    
+    if (hash > 1599)
+    {
+        hash = hash % 1599;
+    }
+    return hash;
+    
+    //int address = 0;
+    
+    //for(int i = 0; word[i] != '\0'; ++i)
+    //{
+    //    address += word[i];
+    //}
+    
+    //if (address > 1599)
+    //{
+    //    address = address % 1599;
+    //}
+
+    //return address;
 }
 
 // Loads dictionary into memory, returning true if successful else false
