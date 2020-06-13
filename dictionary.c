@@ -153,6 +153,7 @@ bool load(const char *dictionary)
     while (!brk);
 
     free(wrd);
+    scanner = fclose(d);
     return true;
 }
 
