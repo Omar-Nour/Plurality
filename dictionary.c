@@ -179,7 +179,7 @@ bool unload(void)
             n = tmp;
         }
         free(tmp);
-        free(n)
+        free(n);
 
     }
     return true;
