@@ -1,0 +1,1 @@
+print("book,\"".strip(".?!,;\"").replace("'",""))
