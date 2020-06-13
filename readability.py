@@ -17,14 +17,15 @@ text = text.split()
 
 words = 0
 for item in text:
-    if (item.strip(".?!,;\"").replace("'", "").replace("-","")).isalpha():
+    if (item.lower().strip(".?!,;\"").replace("'", "").replace("-", "")).isalpha():
         words += 1
 
 L = (letters * 100) / words
 S = (sentences * 100) / words
 
-index = int(0.0588 * L - 0.296 * S - 15.8)
+index = int(round(0.0588 * L - 0.296 * S - 15.8))
 
+#print(f"Words : {words}\nLetters : {letters}\nSentences : {sentences}")
 
 if index >= 16:
     print("Grade 16+")
