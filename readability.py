@@ -25,7 +25,6 @@ S = (sentences * 100) / words
 
 index = int(0.0588 * L - 0.296 * S - 15.8)
 
-print(f"words : {words}\nletters  : {letters}\nsentences : {sentences}")
 
 if index >= 16:
     print("Grade 16+")
