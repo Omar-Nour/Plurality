@@ -153,6 +153,7 @@ bool load(const char *dictionary)
     while (!brk);
 
     free(wrd);
+    scanner = fclose(d);
     return true;
 }
 
@@ -177,6 +178,8 @@ bool unload(void)
             free(n);
             n = tmp;
         }
+        free(tmp);
+        free(n);
 
     }
     return true;
