@@ -18,7 +18,7 @@ typedef struct node
 }
 node;
 
-// Number of buckets in hash table
+// Number of buckets in hash table CHANGE HEEEEREREE
 const unsigned int N = 26;
 
 // Hash table
@@ -27,7 +27,7 @@ node *table[N];
 // initialize to nulls
 void init(void)
 {
-    for(int i = 0; i < N; ++i)
+    for (int i = 0; i < N; ++i)
     {
         table[i] = NULL;
     }
@@ -40,7 +40,7 @@ bool check(const char *word)
     node *n = table[address];
     bool found = false;
 
-    if (strcasecmp(n->word,word) == 0)
+    if (strcasecmp(n->word, word) == 0)
     {
         found = true;
     }
@@ -49,7 +49,7 @@ bool check(const char *word)
         n = n->next;
         while (!found && (n != NULL))
         {
-            if (strcasecmp(n->word,word) == 0)
+            if (strcasecmp(n->word, word) == 0)
             {
                 found = true;
             }
@@ -65,34 +65,35 @@ bool check(const char *word)
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
+    // CHANGE HEREERERE TOOOO
     unsigned int address = (int)word[0];
     if (isupper(address) == 0)
     {
-        address = address - 97;    
+        address = address - 97;
     }
     else
     {
         address = address - 65;
     }
     return address;
-    
-    
+
+
     //djb2 by Dan Bernstein
-    
+
     //unsigned int hash = 5381;
     //int c = 0;
 
     //while (c == *word++)
     //{
-    //    hash = ((hash << 5) + hash) + c; 
+    //    hash = ((hash << 5) + hash) + c;
     //}
-    
+
     //if (hash > 1599)
     //{
     //    hash = hash % 1599;
     //}
     //return hash;
-    
+
 }
 
 // Loads dictionary into memory, returning true if successful else false
@@ -104,13 +105,13 @@ bool load(const char *dictionary)
     {
         return false;
     }
-    
+
     init();
-    
+
     int scanner, address;
     bool brk = false;
 
-    char *wrd= malloc((LENGTH + 1) * sizeof(char));
+    char *wrd = malloc((LENGTH + 1) * sizeof(char));
 
     do
     {
@@ -172,9 +173,9 @@ bool unload(void)
         n = table[i];
         while (n != NULL)
         {
-           tmp = n->next;
-           free(n);
-           n = tmp;
+            tmp = n->next;
+            free(n);
+            n = tmp;
         }
 
     }
