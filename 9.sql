@@ -1,6 +1,6 @@
 -- BUGGY, SOME NAMES MISSING; OUTPUTS 17965 RATHER THAN 18013.
 
-SELECT COUNT(DISTINCT(people.name)) FROM people, stars, movies WHERE movies.year = 2004 AND 
+SELECT DISTINCT(people.name) FROM people, stars, movies WHERE movies.year = 2004 AND 
 stars.movie_id = movies.id AND stars.person_id = people.id
 --GROUP BY name {commented cuz it breaks the count()..}
 ORDER BY birth ASC;
