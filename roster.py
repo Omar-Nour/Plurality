@@ -12,7 +12,7 @@ Qhouse = argv[1]
 reqlist = db.execute(f"SELECT * FROM students WHERE house = ? GROUP BY first ORDER BY last;", Qhouse)
 
 for row in reqlist:
-    if row["middle"] == "NULL":
+    if row["middle"] == None:
         print(f"{row['first']} {row['last']}, born {row['birth']}")
     else:
         print(f"{row['first']} {row['middle']} {row['last']}, born {row['birth']}")
