@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link href="relaxCSS.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>BMI Calculator</title>
+    </head>
+    <body>
+        <div class="nav sb">
+		    <a class="nav-brand" href="index.html">Utility.com</a>
+		    <ul>
+			    <li><a href="index.html">BMI</a></li>
+			    <li><a href="about.html">About</a></li>
+			    <li><a href="projects.html">Projects</a></li>
+			    <li><a href="cv.html">CV</a></li>
+		    </ul>
+	    </div>
+	    <h1 class="w">WELCOME!</h1>
+
+	    <p class="bolds">BMI Calculator</p>
+	    <p>Calculate your Body Mass Index.</p>
+	    <span class="border">
+	        <div class="alert alert-warning" role="alert">
+              BMI Categories:
+              Underweight = < 18.5 |
+              Normal weight = 18.5–24.9 |
+              Overweight = 25–29.9 |
+              Obesity = BMI of 30 or greater
+            </div>
+	    </span>
+	    <form onsubmit="BMI(); return false;">
+	        <p style="padd">Your Mass in Kg: </p>
+	        <input type="text" id="mass">
+	        <p style="padd">Your Height in cm: </p>
+	        <input type="text" id="h">
+	        <input type="submit">
+	    </form>
+	    <p id="out" class="bolds2" style="visibility: hidden;"></p>
+	    <script src="Scripts.js"></script>
+    </body>
+</html>
