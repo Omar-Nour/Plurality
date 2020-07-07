@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell Stock
+{% endblock %}
+
+{% block main %}
+    <p class="font-weight-bolder" class="text-center" style="font-size: 62px;">Sell Stock</p>
+    <form action="/sell" method="post">
+        <div class="form-group">
+            <input id="i1" autocomplete="off" autofocus class="form-control" name="sell_s" placeholder="Symbol" type="text">
+        </div>
+        <div class="form-group">
+            <input id="i2" class="form-control" name="s_shares" placeholder="Shares" type="text">
+        </div>
+        <button id="okb" class="btn btn-primary" type="submit" disabled>Sell</button>
+    </form>
+    <script>
+        let i1 = document.querySelector("#i1");
+        let i2 = document.querySelector("#i2");
+        let c1, c2 = false;
+
+        function chk()
+        {
+            if ((c1 === true) && (c2 === true))
+            {
+                document.querySelector("#okb").disabled = false;
+            }
+            else
+            {
+                document.querySelector("#okb").disabled = true;
+            }
+        }
+
+        i1.onkeyup = function() {
+            c1 = !(i1.value === "");
+            chk();
+        }
+
+        i2.onkeyup = function() {
+            c2 = !(i2.value === "" || parseInt(i2.value) < 0);
+            chk();
+        }
+
+    </script>
+{% endblock %}

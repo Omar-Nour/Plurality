@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" id="un" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" id="p1" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password2" id="p2" placeholder="Password" type="password">
+        </div>
+        <button class="btn btn-primary" id="ok" type="submit" disabled>Sign Up</button>
+    </form>
+    <script>
+        let un = document.querySelector("#un");
+        let p1 = document.querySelector("#p1");
+        let p2 = document.querySelector("#p2");
+        let c1 = false;
+        let c2 = false;
+        let c3 = false;
+        let match = false;
+
+        function chk()
+        {
+            if ((c1 === true) && (c2 === true) && (c3 === true) && (match === true))
+            {
+               document.querySelector("#ok").disabled = false;
+            }
+            else
+            {
+                document.querySelector("#ok").disabled = true;
+            }
+        }
+
+        un.onkeyup = function() {
+            c1 = !(un.value === "");
+            chk()
+        }
+
+        p1.onkeyup = function() {
+            c2 = !(p1.value === "")
+            match = !(p1.value != p2.value);
+            chk()
+        }
+
+        p2.onkeyup = function() {
+            c3 = !(p2.value === "")
+            match = !(p1.value != p2.value);
+            chk()
+        }
+
+
+    </script>
+{% endblock %}
+
+

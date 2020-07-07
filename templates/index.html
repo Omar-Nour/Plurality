@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <p class="font-weight-bolder" class="text-center" style="font-size: 62px;">Dashboard</p>
+    <table class="table table-striped">
+        <thead><tr><th scope="col">Symbol</th><th scope="col">Name</th><th scope="col">Shares</th><th scope="col">Price</th><th scope="col">TOTAL</th></tr></thead>
+        <tbody>
+            {% for row in rows %}
+                {% if row["shares"] > 0 %}
+                    <tr><td>{{ row["symbol"] }}</td><td>{{ row["name"] }}</td><td>{{ row["shares"] }}</td><td>{{ row["price"] }}</td><td>{{ row["total"] }}</td></tr>
+                {% endif %}
+            {% endfor %}
+            <tr><td>CASH</td><td></td><td></td><td></td><td>{{ cash }}</td></tr>
+        </tbody>
+        <thead><tr><th scope="col"></th><th scope="col"></th><th scope="col"></th><th scope="col"></th><th scope="col">{{ total }}</th></tr></thead>
+    </table>
+
+{% endblock %}
