@@ -9,6 +9,8 @@
 #include <ctype.h>
 
 int word_counter = 0;
+char *toLower(char *s);
+char *out;
 
 // Represents a node in a hash table
 typedef struct node
@@ -18,8 +20,8 @@ typedef struct node
 }
 node;
 
-// Number of buckets in hash table CHANGE HEEEEREREE
-const unsigned int N = 26;
+// Number of buckets in hash table root of 143091 is 378..
+const unsigned int N = 379;
 
 // Hash table
 node *table[N];
@@ -34,24 +36,21 @@ void init(void)
 }
 
 // Returns true if word is in dictionary else false
-bool check(const char *word)
+bool check(char *word)
 {
-    int address = hash(word);
+    int address = hash(toLower(word));
     node *n = table[address];
-    bool found = false;
+    bool found = strcasecmp(n->word, word) == 0;
 
-    if (strcasecmp(n->word, word) == 0)
-    {
-        found = true;
-    }
-    else
+    if (!found)
     {
         n = n->next;
         while (!found && (n != NULL))
         {
             if (strcasecmp(n->word, word) == 0)
             {
-                found = true;
+                free(out);
+                return true;
             }
             else
             {
@@ -59,38 +58,59 @@ bool check(const char *word)
             }
         }
     }
+    free(out);
     return found;
 }
 
 // Hashes word to a number
-unsigned int hash(const char *word)
+unsigned int hash(char *word)
 {
-    // CHANGE HEREERERE TOOOO
-    unsigned int address = (int)word[0];
-    if (isupper(address) == 0)
+    unsigned int str_length = strlen(word);
+    int total = 0;
+
+    for (int i = 0; i < str_length; ++i)
     {
-        address = address - 97;
+        total += (word[i]) << i;
+    }
+
+    if (total < 379 && total > 0)
+    {
+        return total;
     }
     else
     {
-        address = address - 65;
+        return (abs(total) % 379);
     }
-    return address;
+
+
+    // CHANGE HEREERERE TOOOO
+    //unsigned int address = (int)word[0];
+    //if (isupper(address) == 0)
+    //{
+    //    address = address - 97;
+    //}
+    //else
+    //{
+    //    address = address - 65;
+    //}
+    //return address;
 
 
     //djb2 by Dan Bernstein
 
     //unsigned int hash = 5381;
     //int c = 0;
+    //unsigned int max_loop = 0;
 
-    //while (c == *word++)
+    //while (c == *word++ && max_loop < 33)
     //{
     //    hash = ((hash << 5) + hash) + c;
+    //    max_loop++;
     //}
 
-    //if (hash > 1599)
+    //if (hash > 379)
     //{
-    //    hash = hash % 1599;
+    //    hash = hash % 379;
     //}
     //return hash;
 
@@ -184,3 +204,16 @@ bool unload(void)
     }
     return true;
 }
+
+char *toLower(char *s) 
+{
+    out = malloc((strlen(s) + 1) * sizeof(char));
+    int len = strlen(s);
+    for (int i = 0; i < len; i++)
+    {
+        out[i] = (char)tolower(s[i]);
+    }
+    out[len] = '\0';
+    return out;
+}
+
