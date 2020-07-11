@@ -38,6 +38,7 @@ void init(void)
 // Returns true if word is in dictionary else false
 bool check(const char *word)
 {
+    printf(">> word is %s\n",toLower(word));
     int address = hash(toLower(word));
     node *n = table[address];
     bool found = strcasecmp(n->word, word) == 0;
@@ -47,7 +48,7 @@ bool check(const char *word)
         n = n->next;
         while (!found && (n != NULL))
         {
-            if (strcasecmp(n->word, out) == 0)
+            if (strcasecmp(n->word, word) == 0)
             {
                 free(out);
                 return true;
@@ -65,35 +66,35 @@ bool check(const char *word)
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
-    unsigned int str_length = strlen(word);
-    int total = 0;
+    //unsigned int str_length = strlen(word);
+    //int total = 0;
 
-    for (int i = 0; word[i] != '\0'; ++i)
-    {
-        total += (word[i]) << i;
-    }
-
-    if (total < 379 && total > 0)
-    {
-        return total;
-    }
-    else
-    {
-        return (abs(total) % 379);
-    }
-
-
-    // CHANGE HEREERERE TOOOO
-    //unsigned int address = (int)word[0];
-    //if (isupper(address) == 0)
+    //for (int i = 0; word[i] != '\0'; ++i)
     //{
-    //    address = address - 97;
+    //    total += (word[i]) << i;
+    //}
+
+    //if (total < 379 && total > 0)
+    //{
+    //    return total;
     //}
     //else
     //{
-    //    address = address - 65;
+    //    return (abs(total) % 379);
     //}
-    //return address;
+
+
+    // CHANGE HEREERERE TOOOO
+    unsigned int address = (int)word[0];
+    if (isupper(address) == 0)
+    {
+        address = address - 97;
+    }
+    else
+    {
+        address = address - 65;
+    }
+    return address;
 
 
     //djb2 by Dan Bernstein
