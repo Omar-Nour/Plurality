@@ -40,14 +40,14 @@ bool check(const char *word)
 {
     int address = hash(toLower(word));
     node *n = table[address];
-    bool found = strcasecmp(n->word, out) == 0;
+    bool found = strcasecmp(n->word, word) == 0;
 
     if (!found)
     {
         n = n->next;
         while (!found && (n != NULL))
         {
-            if (strcasecmp(n->word, word) == 0)
+            if (strcasecmp(n->word, out) == 0)
             {
                 free(out);
                 return true;
@@ -65,35 +65,35 @@ bool check(const char *word)
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
-    unsigned int str_length = strlen(word);
-    int total = 0;
+    //unsigned int str_length = strlen(word);
+    //int total = 0;
 
-    for (int i = 0; i < str_length; ++i)
-    {
-        total += (word[i]) << i;
-    }
-
-    if (total < 379 && total > 0)
-    {
-        return total;
-    }
-    else
-    {
-        return (abs(total) % 379);
-    }
-
-
-    // CHANGE HEREERERE TOOOO
-    //unsigned int address = (int)word[0];
-    //if (isupper(address) == 0)
+    //for (int i = 0; i < str_length; ++i)
     //{
-    //    address = address - 97;
+    //    total += (word[i]) << i;
+    //}
+
+    //if (total < 379 && total > 0)
+    //{
+    //    return total;
     //}
     //else
     //{
-    //    address = address - 65;
+    //    return (abs(total) % 379);
     //}
-    //return address;
+
+
+    // CHANGE HEREERERE TOOOO
+    unsigned int address = (int)word[0];
+    if (isupper(address) == 0)
+    {
+        address = address - 97;
+    }
+    else
+    {
+        address = address - 65;
+    }
+    return address;
 
 
     //djb2 by Dan Bernstein
