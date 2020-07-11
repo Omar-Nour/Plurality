@@ -9,7 +9,7 @@
 #include <ctype.h>
 
 int word_counter = 0;
-char *toLower(char *s);
+char *toLower(const char *s);
 char *out;
 
 // Represents a node in a hash table
@@ -36,11 +36,11 @@ void init(void)
 }
 
 // Returns true if word is in dictionary else false
-bool check(char *word)
+bool check(const char *word)
 {
     int address = hash(toLower(word));
     node *n = table[address];
-    bool found = strcasecmp(n->word, word) == 0;
+    bool found = strcasecmp(n->word, out) == 0;
 
     if (!found)
     {
@@ -63,7 +63,7 @@ bool check(char *word)
 }
 
 // Hashes word to a number
-unsigned int hash(char *word)
+unsigned int hash(const char *word)
 {
     unsigned int str_length = strlen(word);
     int total = 0;
@@ -132,7 +132,7 @@ bool load(const char *dictionary)
     bool brk = false;
 
     char *wrd = malloc((LENGTH + 1) * sizeof(char));
-
+    
     do
     {
         scanner = fscanf(d, "%s", wrd);
@@ -205,7 +205,7 @@ bool unload(void)
     return true;
 }
 
-char *toLower(char *s) 
+char *toLower(const char *s) 
 {
     out = malloc((strlen(s) + 1) * sizeof(char));
     int len = strlen(s);
