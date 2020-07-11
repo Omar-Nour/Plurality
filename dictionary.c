@@ -65,22 +65,22 @@ bool check(const char *word)
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
-    unsigned int str_length = strlen(word);
-    int total = 0;
+    //unsigned int str_length = strlen(word);
+    //int total = 0;
 
-    for (int i = 0; word[i] != '\0'; ++i)
-    {
-        total += (word[i]);
-    }
+    //for (int i = 0; word[i] != '\0'; ++i)
+    //{
+    //    total += (word[i]) << 5;
+    //}
 
-    if (total < 379 && total > 0)
-    {
-        return total;
-    }
-    else
-    {
-        return (abs(total) % 379);
-    }
+    //if (total < 379 && total > 0)
+    //{
+    //    return total;
+    //}
+    //else
+    //{
+    //    return (abs(total) % 379);
+    //}
 
 
     // CHANGE HEREERERE TOOOO
