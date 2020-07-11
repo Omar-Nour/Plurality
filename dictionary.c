@@ -38,7 +38,6 @@ void init(void)
 // Returns true if word is in dictionary else false
 bool check(const char *word)
 {
-    printf(">> word is %s\n",toLower(word));
     int address = hash(toLower(word));
     node *n = table[address];
     bool found = strcasecmp(n->word, word) == 0;
