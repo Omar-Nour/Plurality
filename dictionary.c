@@ -68,7 +68,7 @@ unsigned int hash(const char *word)
     unsigned int str_length = strlen(word);
     int total = 0;
 
-    for (int i = 0; i < str_length; ++i)
+    for (int i = 0; word[i] != '\0'; ++i)
     {
         total += (word[i]) << i;
     }
