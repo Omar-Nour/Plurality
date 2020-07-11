@@ -211,7 +211,14 @@ char *toLower(char *s)
     int len = strlen(s);
     for (int i = 0; i < len; i++)
     {
-        out[i] = (char)tolower(s[i]);
+        if (isupper(s[i]))
+        {
+            out[i] = (char)tolower(s[i]);
+        }
+        else
+        {
+            out[i] = s[i];
+        }
     }
     out[len] = '\0';
     return out;
