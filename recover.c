@@ -24,47 +24,57 @@ int main(int argc, char *argv[])
 
     // to recieve return of fwrite
     int null;
-    
-    bool exit = false;
 
 
-    do
+    while (1)
     {
         read_bytes = fread(bytes, 1, 512, memc);
-        exit = read_bytes == 0;
-        if (bytes[0] == 0xff && bytes[1] == 0xd8 && bytes[2] == 0xff && (bytes[3] & 0xf0) == 0xe0 && !exit)
+        if (read_bytes == 0)
         {
-            jpg_count++;
-            if (jpg_count == 0)
+            if (jpg_count > -1)
             {
-                sprintf(filename, "%03i.jpg", jpg_count);
-                img = fopen(filename, "w");
-                null = fwrite(bytes, 1, 512, img);
+                fclose(img);
+                break;
             }
             else
             {
-                fclose(img);
-                sprintf(filename, "%03i.jpg", jpg_count);
-                img = fopen(filename, "w");
+                break;
+            }
+        }
+        else
+        {
+            if (bytes[0] == 0xff && bytes[1] == 0xd8 && bytes[2] == 0xff && (bytes[3] & 0xf0) == 0xe0)
+            {
+                jpg_count++;
+                if (jpg_count == 0)
+                {
+                    sprintf(filename, "%03i.jpg", jpg_count);
+                    img = fopen(filename, "w");
+                    null = fwrite(bytes, 1, 512, img);
+                }
+                else
+                {
+                    fclose(img);
+                    sprintf(filename, "%03i.jpg", jpg_count);
+                    img = fopen(filename, "w");
+                    null = fwrite(bytes, 1, 512, img);
+                }
+            }
+            // continue to fill next blocks of previous/opened image
+            else if (jpg_count > -1)
+            {
                 null = fwrite(bytes, 1, 512, img);
             }
         }
-        // continue to fill next blocks of previous/opened image
-        else if (jpg_count > -1 && !exit)
-        {
-            null = fwrite(bytes, 1, 512, img);
-        }
-
     }
-    while (!exit);
 
     free(filename);
 
     // close img only if it was open asasan
-    if (jpg_count > -1)
-    {
-        fclose(img);
-    }
+    //if (jpg_count > -1)
+    //{
+    //    fclose(img);
+    //}
     fclose(memc);
 
 }
