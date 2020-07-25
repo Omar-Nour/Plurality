@@ -24,12 +24,15 @@ int main(int argc, char *argv[])
 
     // to recieve return of fwrite
     int null;
+    
+    bool exit = false;
 
 
     do
     {
         read_bytes = fread(bytes, 1, 512, memc);
-        if (bytes[0] == 0xff && bytes[1] == 0xd8 && bytes[2] == 0xff && (bytes[3] & 0xf0) == 0xe0)
+        exit = read_bytes == 0;
+        if (bytes[0] == 0xff && bytes[1] == 0xd8 && bytes[2] == 0xff && (bytes[3] & 0xf0) == 0xe0 && !exit)
         {
             jpg_count++;
             if (jpg_count == 0)
@@ -47,13 +50,13 @@ int main(int argc, char *argv[])
             }
         }
         // continue to fill next blocks of previous/opened image
-        else if (jpg_count > -1)
+        else if (jpg_count > -1 && !exit)
         {
             null = fwrite(bytes, 1, 512, img);
         }
 
     }
-    while (read_bytes != 0);
+    while (!exit);
 
     free(filename);
 
