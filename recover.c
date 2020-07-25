@@ -69,12 +69,6 @@ int main(int argc, char *argv[])
     }
 
     free(filename);
-
-    // close img only if it was open asasan
-    //if (jpg_count > -1)
-    //{
-    //    fclose(img);
-    //}
     fclose(memc);
 
 }
