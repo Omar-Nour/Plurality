@@ -159,9 +159,6 @@ void record_preferences(int ranks[])
 // Record pairs of candidates where one is preferred over the other
 void add_pairs(void)
 {
-    //calculate pairs
-    pair_count = facto(candidate_count) / (2 * facto(candidate_count - 2));
-    
     int cand1, cand2, vote1, vote2;
     int x = 0;
     pair current_pair;
@@ -194,6 +191,7 @@ void add_pairs(void)
             
             if (unique(current_pair))
             {
+                pair_count++;
                 pairs[x] = current_pair;
                 x++;
             }
