@@ -18,6 +18,7 @@ typedef struct
     int winner;
     int loser;
     int diff;
+    int high;
 }
 pair;
 
@@ -182,11 +183,13 @@ void add_pairs(void)
             {
                 current_pair.winner = cand1;
                 current_pair.loser = cand2;
+                current_pair.high = vote1
             }
             else
             {
                 current_pair.winner = cand2;
                 current_pair.loser = cand1;
+                current_pair.high = vote2;
             }
             
             if (unique(current_pair))
@@ -210,7 +213,7 @@ void sort_pairs(void)
     {
         for (int j = i + 1; j < pair_count; ++j)
         {
-            if (pairs[j].diff > pairs[i].diff)
+            if (pairs[j].diff > pairs[i].diff && pairs[j].high > pairs[i].high)
             {
                 temp = pairs[i];
                 pairs[i] = pairs[j];
