@@ -209,12 +209,11 @@ void add_pairs(void)
 void sort_pairs(void)
 {
     pair temp;
-    for (int i = 0; i < pair_count - 1; ++i)
+    for (int i = 0; i < pair_count; ++i)
     {
         for (int j = i + 1; j < pair_count; ++j)
         {
-            //if (pairs[j].diff > pairs[i].diff && pairs[j].high > pairs[i].high)
-            if (pairs[j].high > pairs[i].high)
+            if (pairs[j].diff > pairs[i].diff)
             {
                 temp = pairs[i];
                 pairs[i] = pairs[j];
