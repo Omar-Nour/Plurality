@@ -183,7 +183,7 @@ void add_pairs(void)
             {
                 current_pair.winner = cand1;
                 current_pair.loser = cand2;
-                current_pair.high = vote1
+                current_pair.high = vote1;
             }
             else
             {
