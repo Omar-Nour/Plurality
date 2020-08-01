@@ -213,7 +213,8 @@ void sort_pairs(void)
     {
         for (int j = i + 1; j < pair_count; ++j)
         {
-            if (pairs[j].diff > pairs[i].diff && pairs[j].high > pairs[i].high)
+            //if (pairs[j].diff > pairs[i].diff && pairs[j].high > pairs[i].high)
+            if (pairs[j].high > pairs[i].high)
             {
                 temp = pairs[i];
                 pairs[i] = pairs[j];
